@@ -1,4 +1,4 @@
-
+import io.qameta.allure.Step;
 
 public class Account {
 	private final String name;
@@ -7,7 +7,7 @@ public class Account {
 		this.name = name;
 	}
 
-
+	@Step("Check given name for the specified parameters")
 	public boolean checkNameToEmboss() {
 		String trimName = name.trim();
 		if (trimName.length() >= 3 && trimName.length() <= 19) {

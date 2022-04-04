@@ -1,48 +1,32 @@
-import io.qameta.allure.Description;
-import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
-
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static org.junit.Assert.assertTrue;
 
-
+@RunWith(Parameterized.class)
 public class PositiveAccountTest {
+	
+	private final String nameTest;
 
+	public PositiveAccountTest(String nameTest) {
+		this.nameTest = nameTest;
+	}
+	@Parameterized.Parameters(name = "Name string parameters = {0}")
+	public static Object[] setNameTest() {
+		return new Object[]{
+				"Alex ivanov",
+				"дмитрий Белоусов",
+				"I K",
+				"Зимбицкий Апполинар"
+		};
+	}
 
 	@Test
-	@DisplayName("Get positive parameters to name")
-	@Description("Set String = \"Alex ivanov\"")
-	public void setCorrectEnglishNameFormTest (){
-		String nameTest = "Alex ivanov";
+	public void setCorrectNameFormTest (){
 		Account account = new Account(nameTest);
 		assertTrue(account.checkNameToEmboss());
 	}
 
-	@Test
-	@DisplayName("Get positive parameters to name")
-	@Description("Set String = \"дмитрий Белоусов\"")
-	public void setCorrectRussianNameFormTest (){
-		String nameTest = "дмитрий Белоусов";
-		Account account = new Account(nameTest);
-		assertTrue(account.checkNameToEmboss());
-	}
-
-	@Test
-	@DisplayName("Get minimum positive parameters to name")
-	@Description("Set String = \"I K\"")
-	public void setMinimumCorrectNameFormTest(){
-		String nameTest = "I K";
-		Account account = new Account(nameTest);
-		assertTrue(account.checkNameToEmboss());
-	}
-
-	@Test
-	@DisplayName("Get maximum positive parameters to name")
-	@Description("Set String = \"Зимбицкий Апполинар\"")
-	public void setCorrectMaximumNameFormTest (){
-		String nameTest = "Зимбицкий Апполинар";
-		Account account = new Account(nameTest);
-		assertTrue(account.checkNameToEmboss());
-	}
 
 }
